@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull : false
           }
         });
-    models.TeamMember.belongsTo(models.User,
+    models.TeamMember.belongsTo(models.Team,
         {
           foreignKey : {
             allowNull : false

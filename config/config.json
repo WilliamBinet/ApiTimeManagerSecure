@@ -3,7 +3,7 @@
     "username": "William",
     "password": "password",
     "database": "TimeManagerv3",
-    "host": "bdd",
+    "host": "127.0.0.1",
     "dialect": "mysql",
     "timezone": "+02:00",
     "dialectOptions": {

@@ -5,12 +5,12 @@ const bcrypt = require('bcrypt-nodejs');
 
 
 router.get('/:id_user', function (req, res, next) {
-    modele.Clocking.findOne({where: {id_user: req.params.id}})
+    modele.Clock.findOne({where: {id_user: req.params.id}})
         .then((result) => (result != null) ? res.json(result) : res.sendStatus(404));
 });
 
 router.post('/:id_user', function (req, res, next) {
-    modele.Clocking.findOne({where: {id_user: req.params.id_user}})
+    modele.Clock.findOne({where: {id_user: req.params.id_user}})
         .then(clock => {
             if (clock !== null) {
                 if (clock.status) {

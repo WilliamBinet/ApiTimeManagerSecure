@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  let Clocking = sequelize.define('Clocking', {
+  let Clock = sequelize.define('Clock', {
     id: {
       primaryKey: true,
       type : DataTypes.INTEGER,
@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.BOOLEAN,
     id_user: DataTypes.INTEGER
   }, {});
-  Clocking.associate = function(models) {
-    models.Clocking.belongsTo(models.User,
+  Clock.associate = function(models) {
+    models.Clock.belongsTo(models.User,
         {
           foreignKey : {
             name : 'id_user',
@@ -18,5 +18,5 @@ module.exports = (sequelize, DataTypes) => {
           }
         })
   };
-  return Clocking;
+  return Clock;
 };
