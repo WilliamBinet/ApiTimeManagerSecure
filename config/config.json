@@ -2,7 +2,7 @@
   "development": {
     "username": "William",
     "password": "password",
-    "database": "TimeManagerv4",
+    "database": "TimeManagerv3",
     "host": "bdd",
     "dialect": "mysql",
     "timezone": "+02:00",
