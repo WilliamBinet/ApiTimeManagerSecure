@@ -1,1 +1,1 @@
-ApiTimeManagerSecure
+ApiTimeManagerV1
