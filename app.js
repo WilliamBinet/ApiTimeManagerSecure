@@ -10,12 +10,12 @@ var usersRouter = require('./routes/users');
 var workingTimesRouter = require('./routes/workingtimes');
 var clocksRouter = require('./routes/clocks');
 var app = express();
-// var csrfProtection = csurf({ cookie: true });
+ var csrfProtection = csurf({ cookie: true });
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
-// app.use(csrfProtection);
+app.use(csrfProtection);
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));

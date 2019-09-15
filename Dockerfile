@@ -6,6 +6,7 @@ COPY package*.json ./
 
 RUN npm install && npm install -g sequelize sequelize-cli mysql2 && npm install bcrypt-nodejs --save
 
+ENV NODE_ENV=production
 
 COPY . .
 
