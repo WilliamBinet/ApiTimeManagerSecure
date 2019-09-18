@@ -2,9 +2,9 @@ FROM node
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json .
 
-RUN npm install && npm install -g sequelize sequelize-cli mysql2 && npm install bcrypt-nodejs --save
+RUN npm install && npm install -g sequelize sequelize-cli mysql2
 
 COPY . .
 
