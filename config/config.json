@@ -15,19 +15,31 @@
 
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "bdd",
-    "dialect": "mysql",
-    "operatorsAliases": false
-  },
-  "production": {
-    "username": "bdd",
-    "password": null,
-    "database": "database_production",
+    "username": "William",
+    "password": "password",
+    "database": "TimeManagerv3",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "timezone": "+02:00",
+    "dialectOptions": {
+      "useUTC": true,
+      "dateStrings": true,
+      "typeCast": true
+    },
+    "seederStorage": "sequelize"
+  },
+  "production": {
+    "username": "William",
+    "password": "password",
+    "database": "TimeManagerv3",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "timezone": "+02:00",
+    "dialectOptions": {
+      "useUTC": true,
+      "dateStrings": true,
+      "typeCast": true
+    },
+    "seederStorage": "sequelize"
   }
 }
