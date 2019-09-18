@@ -6,7 +6,7 @@ module.exports = {
         return queryInterface.bulkInsert('Users', [
             {
                 email: 'Administrator@email.fr',
-                password: '$2y$12$ZIVXrHduOT.oAAsmF5i7IOOP0s0Pq3aJ5Do76t..wA3ZViih5H9GG',
+                password: '$2b$12$eC5O.uIR87LKsXLCYXA6E.rwptRoKxZrkTRzSok6P5w/yaMToDv.W',
                 firstname: 'Administrator',
                 lastname: 'LN',
                 role: 'Administrator',
@@ -15,7 +15,7 @@ module.exports = {
             },
             {
                 email: 'Manager@email.fr',
-                password: '$2y$12$ZIVXrHduOT.oAAsmF5i7IOOP0s0Pq3aJ5Do76t..wA3ZViih5H9GG',
+                password: '$2b$12$eC5O.uIR87LKsXLCYXA6E.rwptRoKxZrkTRzSok6P5w/yaMToDv.W',
                 firstname: 'fname',
                 lastname: 'LN',
                 role: 'Manager',
@@ -24,7 +24,7 @@ module.exports = {
             },
             {
                 email: 'Employee1@email.fr',
-                password: '$2y$12$ZIVXrHduOT.oAAsmF5i7IOOP0s0Pq3aJ5Do76t..wA3ZViih5H9GG',
+                password: '$2b$12$eC5O.uIR87LKsXLCYXA6E.rwptRoKxZrkTRzSok6P5w/yaMToDv.W',
                 firstname: 'Employee 1',
                 lastname: 'LN',
                 role: 'Employee',

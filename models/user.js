@@ -9,14 +9,14 @@ module.exports = (sequelize, DataTypes) => {
         password: DataTypes.STRING,
         firstname: DataTypes.STRING,
         lastname: DataTypes.STRING,
-        id_role: DataTypes.INTEGER
+        role: DataTypes.STRING
     });
     User.associate = function (models) {
         models.User.belongsTo(models.Role,
             {
                 foreignKey: {
                     allowNull: false,
-                    name: 'id_role'
+                    name: 'role'
                 }
             });
     };

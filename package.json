@@ -20,6 +20,7 @@
     "validator": "^11.1.0"
   },
   "devDependencies": {
+    "bcrypt": "^3.0.6",
     "express-swagger-generator": "^1.1.15"
   }
 }

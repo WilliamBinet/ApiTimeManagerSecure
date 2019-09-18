@@ -1,7 +1,7 @@
 var modele = require('../models/index');
-const bcrypt = require('bcrypt-nodejs');
 let userUtil = require('../utils/usersUtils');
 let jwtUtils = require('../utils/jwtUtils');
+var bcrypt = require('bcrypt');
 
 module.exports = {
     getUsers : function (req, res) {
@@ -32,7 +32,7 @@ module.exports = {
 
     createUser : function (req, res) {
         if (userUtil.validateInsert(req.body.user)) {
-            req.body.user.password = bcrypt.hashSync(req.body.user.password, 10);
+            req.body.user.password = bcrypt.hashSync(req.body.user.password, 12);
             modele.User.create(req.body.user)
                 .then(newUser => {
                     res.json(200, newUser);
@@ -43,17 +43,18 @@ module.exports = {
     },
 
     connectUser : function (req, res) {
+        console.log("TEST =>>>>>>>>>>>>>>>>>>>  " + req.body.user);
         if (userUtil.validateLogin(req.body.user)) {
             modele.User.findOne( {
                 where: {email: req.body.user.email}
             })
                 .then(newUser => {
+                    console.log(req.body.user.password   +  "   "   + newUser.password);
                     if (newUser == null) {
                         res.send(400, "Aucun utilisateur n'a cet email");
                     } else if (!bcrypt.compareSync(req.body.user.password, newUser.password)){
                         res.send("Wrong password");
                     } else {
-                        res.cookie
                         res.send( jwtUtils.generateTokenForUser(newUser));
                     }
                 });
