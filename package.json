@@ -18,5 +18,8 @@
     "mysql2": "^1.7.0",
     "sequelize": "^5.18.4",
     "validator": "^11.1.0"
+  },
+  "devDependencies": {
+    "express-swagger-generator": "^1.1.15"
   }
 }

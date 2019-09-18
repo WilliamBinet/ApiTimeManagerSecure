@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt-nodejs');
 let userUtil = require('../utils/usersUtils');
 let jwtUtils = require('../utils/jwtUtils');
 let userController = require('../controller/UserController');
+
+
 //var csurf = require('csurf');
 //var csrfProtection = csurf({ cookie: true, httpOnly : true, key : 'X-CSRF-TOKEN' });
 

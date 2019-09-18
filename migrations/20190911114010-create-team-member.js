@@ -13,14 +13,18 @@ module.exports = {
         references: {
           model : 'Users',
           key : 'id'
-        }
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       id_team: {
         type: Sequelize.INTEGER,
         references: {
           model : 'Teams',
           key : 'id'
-        }
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

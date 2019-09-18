@@ -3,14 +3,16 @@
     "username": "William",
     "password": "password",
     "database": "TimeManagerv3",
-    "host": "bdd",
+    "host": "127.0.0.1",
     "dialect": "mysql",
     "timezone": "+02:00",
     "dialectOptions": {
       "useUTC": true,
       "dateStrings": true,
       "typeCast": true
-    }
+    },
+    "seederStorage": "sequelize"
+
   },
   "test": {
     "username": "root",

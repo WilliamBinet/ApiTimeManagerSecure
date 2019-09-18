@@ -3,39 +3,34 @@ var modele = require('../models/index');
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return modele.Role.findAll().then(roles => {
-            if (roles.length === 0) {
-                return queryInterface.bulkInsert('Roles', [
-                    {
-                        label: 'Administrator',
-                        createdAt: new Date(),
-                        updatedAt: new Date()
-                    },
-                    {
-                        label: 'Manager',
-                        createdAt: new Date(),
-                        updatedAt: new Date()
-                    },
-                    {
-                        label: 'Employee',
-                        createdAt: new Date(),
-                        updatedAt: new Date()
-                    }
-                ], {});
-            } else {
-                return queryInterface.showAllTables();
+        return queryInterface.bulkInsert('Roles', [
+            {
+                label: 'Administrator',
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                label: 'Manager',
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                label: 'Employee',
+                createdAt: new Date(),
+                updatedAt: new Date()
             }
-        });
-
+        ], {});
     },
 
-    down: (queryInterface, Sequelize) => {
-        /*
-          Add reverting commands here.
-          Return a promise to correctly handle asynchronicity.
+    down:
+        (queryInterface, Sequelize) => {
+            /*
+              Add reverting commands here.
+              Return a promise to correctly handle asynchronicity.
 
-          Example:
-          return queryInterface.bulkDelete('People', null, {});
-        */
-    }
-};
+              Example:
+              return queryInterface.bulkDelete('People', null, {});
+            */
+        }
+}
+;

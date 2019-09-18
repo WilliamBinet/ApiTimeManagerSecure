@@ -3,8 +3,6 @@ var modele = require('../models/index');
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-      return modele.WorkingTime.findAll().then (T => {
-        if (T.length === 0) {
           return queryInterface.bulkInsert('WorkingTimes', [
             {
               id_user: '3',
@@ -21,11 +19,7 @@ module.exports = {
               updatedAt: new Date()
             }
           ], {});
-        } else {
-          return queryInterface.showAllTables();
-        }
-      });
-    },
+        },
 
         down :
             (queryInterface, Sequelize) => {

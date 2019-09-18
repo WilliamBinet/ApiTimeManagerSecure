@@ -76,7 +76,6 @@ module.exports = {
     getProfile : function (req, res) {
         var headerAuth =  req.headers.authorization;
         var userId = jwtUtils.getUserId(headerAuth);
-        console.log("Mon id " + userId);
         if (userId !== - 1) {
             modele.User.findOne({where: {id: userId}}).then((result) => res.json(result));
         }

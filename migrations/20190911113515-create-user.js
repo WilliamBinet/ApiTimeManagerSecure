@@ -31,13 +31,15 @@ module.exports = {
         type: Sequelize.STRING
       },
 
-      id_role: {
+      role: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         references: {
           model : 'Roles',
-          key : 'id'
-        }
+          key : 'label'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

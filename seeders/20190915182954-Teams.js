@@ -3,8 +3,6 @@ var modele = require('../models/index');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return modele.Team.findAll().then(T => {
-      if (T.length === 0 ){
         return queryInterface.bulkInsert('Teams', [
           {
             id_manager: '2',
@@ -13,10 +11,6 @@ module.exports = {
             updatedAt: new Date()
           }
         ], {});
-      } else {
-        return queryInterface.showAllTables();
-      }
-    })
   },
 
   down: (queryInterface, Sequelize) => {
