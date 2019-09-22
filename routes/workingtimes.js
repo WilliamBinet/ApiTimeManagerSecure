@@ -1,8 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var modele = require('../models/index');
-const bcrypt = require('bcrypt-nodejs');
-const Sequelize = require('sequelize');
 const controllerWT = require('../controller/WorkingTimeController');
 
 
@@ -19,4 +16,5 @@ router.delete('/:id', controllerWT.deleteWorkingTime );
 router.put('/:id/time', controllerWT.getWorkingTimeOfTeam);
 
 module.exports = router;
+
 

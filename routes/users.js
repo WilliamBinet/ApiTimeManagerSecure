@@ -7,18 +7,19 @@ let userController = require('../controller/UserController');
 //var csrfProtection = csurf({ cookie: true, httpOnly : true, key : 'X-CSRF-TOKEN' });
 
 
+router.post('/sign_in' , userController.connectUser);
 
 router.get('/', userController.getUsers);
 
 router.get('/me/profile',  userController.getProfile);
-
-router.get('/sign_in', userController.connectUser);
 
 router.get('/:id', userController.getUserById);
 
 router.put('/:id', userController.updateUser);
 
 router.post('/sign_up', userController.createUser);
+
+
 
 
 router.delete('/:id', userController.deleteUser);

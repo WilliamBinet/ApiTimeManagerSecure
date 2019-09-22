@@ -5,7 +5,7 @@ var modele = require('../models/index');
 module.exports = {
 
     getClockById : function (req, res) {
-        modele.Clock.findOne({where: {id_user: req.params.id}})
+        modele.Clock.findOne({where: {id_user: req.params.id_user}})
             .then((result) => (result != null) ? res.json(result) : res.sendStatus(404));
     },
 

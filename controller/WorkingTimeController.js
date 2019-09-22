@@ -1,8 +1,4 @@
 var modele = require('../models/index');
-const bcrypt = require('bcrypt-nodejs');
-let userUtil = require('../utils/usersUtils');
-let jwtUtils = require('../utils/jwtUtils');
-const controllerTeam = require('../controller/TeamController');
 const Sequelize = require('sequelize');
 const op = Sequelize.Op;
 

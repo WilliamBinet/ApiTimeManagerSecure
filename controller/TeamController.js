@@ -1,7 +1,10 @@
+
+
 var express = require('express');
 var router = express.Router();
 var modele = require('../models/index');
-
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 
 module.exports = {
@@ -36,27 +39,58 @@ module.exports = {
     },
 
     insertTeam: function (req, res) {
-        modele.User.create(req.body.team)
+        console.log(JSON.stringify(req.body.team));
+        modele.Team.create(req.body.team)
             .then(insertedTeam => res.send(insertedTeam))
             .catch(e => res.send(e));
     },
 
     addUserToTeam: function (req, res) {
+        console.log(JSON.stringify(req.body.teammember));
         modele.TeamMember.create(req.body.teammember)
             .then(teamMember => res.send(teamMember))
             .catch(e => res.send(e));
     },
 
     removeUserFromTeam: function (req, res) {
-        modele.TeamMember.destroy({where : {id_user : req.params.id_user, id_team : req.params.id_team}})
+        modele.TeamMember.destroy({where : {id_user : req.params.id_user, id_team : req.params.id}})
             .then(deletedMember => deletedMember === 0 ? res.send(400) : res.send(200))
             .catch(e => res.send(e));
     },
 
+    getMemberOfTeam : function (req, res) {
+        modele.TeamMember.findAll({where : {id_team : req.params.id}}).then(
+            teams => {
+                modele.User.findAll( {where : {id : {[Op.in] : extractIdUserFromTeam(teams)}}}).then(resp => {
+                    res.send(resp);
+                }).catch(e => {
+                    console.log(e)
+                })
+            }).catch( e => {
+                res.send(e);
+        })
+    },
 
-
-
-
+    getNonMemberOfTeam : function (req, res) {
+        modele.TeamMember.findAll({where : {id_team : req.params.id}}).then(
+            teams => {
+                modele.User.findAll( {where : {id : {[Op.notIn] : extractIdUserFromTeam(teams)}}}).then(resp => {
+                    res.send(resp);
+                }).catch(e => {
+                    console.log(e)
+                })
+            }).catch( e => {
+            res.send(e);
+        })
+    }
 };
+
+function extractIdUserFromTeam(team) {
+    let userId = [];
+    for (const modeleElement of team) {
+        userId.push(modeleElement.id_user);
+    }
+    return userId;
+}
 
 
