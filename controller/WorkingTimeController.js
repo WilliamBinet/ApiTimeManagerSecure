@@ -8,7 +8,7 @@ module.exports = {
         if (req.query !== undefined && Object.keys(req.query).length === 2) {
             if (req.query.start !== undefined && req.query.end !== undefined) {
                 modele.WorkingTime.findAll({
-                    where: {id_user: req.params.id, start: {[Op.gte]: req.query.start}, end: {[Op.lte]: req.query.end}}
+                    where: {id_user: req.params.id, start: {[op.gte]: req.query.start}, end: {[op.lte]: req.query.end}}
                 }).then(
                     (result) => {
                         result !== null ? res.json(result) : res.sendStatus(404)

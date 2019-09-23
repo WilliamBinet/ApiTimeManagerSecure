@@ -95,7 +95,9 @@ function generateConnexionResp(user) {
     return {
 
         user: {
+            id : user.id,
             role: user.role,
+            email: user.email,
             firstname: user.firstname,
             lastname: user.lastname,
         },
