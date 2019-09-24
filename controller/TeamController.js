@@ -82,6 +82,24 @@ module.exports = {
             }).catch( e => {
             res.send(e);
         })
+    },
+
+    getUserTeams : function (req, res) {
+        modele.TeamMember.findAll({where : {id_user : req.params.id_user}}).then(resp => {
+            modele.Team.findAll({where : {id :{[Op.in ] : extractIdTeamFromTeamMember(resp)}}}).then(teams => {
+                res.send(teams);
+            })
+        }).catch(e => {
+            res.send(400, 'Error on select teams')
+        })
+    },
+
+    getTeamOfManager : function (req, res) {
+        modele.Team.findAll({where : { id_manager : req.params.id_manager}}).then(resp => {
+            res.send(resp);
+        }).catch( e => {
+            res.send(400);
+        })
     }
 };
 
@@ -91,6 +109,14 @@ function extractIdUserFromTeam(team) {
         userId.push(modeleElement.id_user);
     }
     return userId;
+}
+
+function extractIdTeamFromTeamMember(TeamMembers) {
+    let teamIds = [];
+    for (const modeleElement of TeamMembers) {
+        teamIds.push(modeleElement.id_team);
+    }
+    return teamIds;
 }
 
 

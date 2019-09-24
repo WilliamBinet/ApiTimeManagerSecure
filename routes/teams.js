@@ -10,10 +10,13 @@ router.get('/',teamController.getAllTeam);
 
 router.get('/:id',teamController.getTeamById);
 
+router.get('/manager/:id_manager', teamController.getTeamOfManager);
+
 router.get('/:id/users' , teamController.getMemberOfTeam);
 
 router.get('/:id/users/NotIn' , teamController.getNonMemberOfTeam);
 
+router.get('/user/:id_user', teamController.getUserTeams);
 
 router.post('/',teamController.insertTeam);
 
