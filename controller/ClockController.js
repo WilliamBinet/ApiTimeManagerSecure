@@ -1,15 +1,15 @@
-var express = require('express');
-var router = express.Router();
-var modele = require('../models/index');
+const express = require('express');
+const router = express.Router();
+const modele = require('../models/index');
 
 module.exports = {
 
-    getClockById : function (req, res) {
+    getClockById: function (req, res) {
         modele.Clock.findOne({where: {id_user: req.params.id_user}})
             .then((result) => (result != null) ? res.json(result) : res.sendStatus(404));
     },
 
-    updateClockStatus : function (req, res) {
+    updateClockStatus: function (req, res) {
         modele.Clock.findOne({where: {id_user: req.params.id_user}})
             .then(clock => {
                 if (clock !== null) {
@@ -22,6 +22,18 @@ module.exports = {
             }).then(updatedOwner => {
             res.json(updatedOwner);
         });
+    },
+
+    updateClock: function (req, res) {
+        modele.Clock.findOne({where: {id_user: req.params.id_user}}).then(resp => {
+            resp.update(req.body.updates).then(clock => {
+                if (clock) {
+                    res.send(200);
+                } else {
+                    res.send(400);
+                }
+            })
+        })
     }
 };
 

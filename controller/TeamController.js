@@ -1,8 +1,6 @@
-
-
-var express = require('express');
-var router = express.Router();
-var modele = require('../models/index');
+const express = require('express');
+const router = express.Router();
+const modele = require('../models/index');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
@@ -90,7 +88,7 @@ module.exports = {
                 res.send(teams);
             })
         }).catch(e => {
-            res.send(400, 'Error on select teams')
+            res.send(400, e.message + 'Error on select teams')
         })
     },
 
@@ -98,7 +96,7 @@ module.exports = {
         modele.Team.findAll({where : { id_manager : req.params.id_manager}}).then(resp => {
             res.send(resp);
         }).catch( e => {
-            res.send(400);
+            res.send(400, e.message);
         })
     }
 };

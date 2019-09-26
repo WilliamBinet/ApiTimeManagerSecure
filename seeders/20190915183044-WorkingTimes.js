@@ -1,5 +1,5 @@
 'use strict';
-var modele = require('../models/index');
+const modele = require('../models/index');
 
 module.exports = {
     up: (queryInterface, Sequelize) => {

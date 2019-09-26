@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const controllerWT = require('../controller/WorkingTimeController');
 
 
-router.get('/:id', controllerWT.getWorkingTimeByIdBetween);
+router.get('/:id', controllerWT.getWorkingTimeById);
+
+router.get('/users/:id_user', controllerWT.getWorkingTimeByIdBetween);
 
 router.get('/:id_user/:id_workingtime', controllerWT.getWorkingTimeByIdUserId);
 

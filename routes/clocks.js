@@ -1,13 +1,14 @@
-var express = require('express');
-var router = express.Router();
-var modele = require('../models/index');
+const express = require('express');
+const router = express.Router();
+const modele = require('../models/index');
 const bcrypt = require('bcrypt-nodejs');
-const userController = require('../controller/ClockController');
+const clockController = require('../controller/ClockController');
 
 
-router.get('/:id_user', userController.getClockById);
+router.get('/:id_user', clockController.getClockById);
 
-router.post('/:id_user', userController.updateClockStatus);
+router.post('/:id_user', clockController.updateClockStatus);
+router.put('/:id_user', clockController.updateClock);
 
 
 

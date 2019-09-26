@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var modele = require('../models/index');
+const express = require('express');
+const router = express.Router();
+const modele = require('../models/index');
 const bcrypt = require('bcrypt-nodejs');
 const teamController = require('../controller/TeamController');
 

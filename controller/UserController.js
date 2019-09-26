@@ -1,14 +1,17 @@
-
-var sequelize = require('sequelize');
-var modele = require('../models/index');
+const sequelize = require('sequelize');
+const modele = require('../models/index');
 let userUtil = require('../utils/usersUtils');
 let jwtUtils = require('../utils/jwtUtils');
-var bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 module.exports = {
     getUsers: function (req, res) {
         if (Object.keys(req.query).length !== 0) {
-            getUserByRole(res, req.query);
+            if (req.query.email !== undefined) {
+                getUserByEmail(res, req.query);
+            } else {
+                getUserByRole(res, req.query);
+            }
         } else {
             modele.User.findAll().then((result) => res.json(result));
         }
@@ -29,7 +32,9 @@ module.exports = {
             })
             .then(updatedOwner => {
                 res.json(updatedOwner);
-            });
+            }).catch(e => {
+            res.send(400, e);
+        });
     },
 
     createUser: function (req, res) {
@@ -37,9 +42,10 @@ module.exports = {
             req.body.user.password = bcrypt.hashSync(req.body.user.password, 12);
             modele.User.create(req.body.user)
                 .then(newUser => {
+                    createClock(newUser);
                     res.json(newUser);
                 }).catch(sequelize.ValidationError, function (err) {
-                    res.status(400).send('Adresse already in use');
+                res.status(400).send('Adresse already in use');
             });
         } else {
             res.send('test');
@@ -61,7 +67,7 @@ module.exports = {
                             httpOnly: true,
                             expires: 0
                         };
-                        res.cookie('JWTimeManager' , jwtUtils.generateTokenForUser(newUser),cookieOptions);
+                        res.cookie('JWTimeManager', jwtUtils.generateTokenForUser(newUser), cookieOptions);
                         res.send(generateConnexionResp(newUser));
                     }
                 });
@@ -82,8 +88,8 @@ module.exports = {
     },
 
     getProfile: function (req, res) {
-        var headerAuth = req.headers.authorization;
-        var userId = jwtUtils.getUserId(headerAuth);
+        const headerAuth = req.headers.authorization;
+        const userId = jwtUtils.getUserId(headerAuth);
         if (userId !== -1) {
             modele.User.findOne({where: {id: userId}}).then((result) => res.json(result));
         }
@@ -95,7 +101,7 @@ function generateConnexionResp(user) {
     return {
 
         user: {
-            id : user.id,
+            id: user.id,
             role: user.role,
             email: user.email,
             firstname: user.firstname,
@@ -103,6 +109,17 @@ function generateConnexionResp(user) {
         },
         token: jwtUtils.generateTokenForUser(user)
     }
+}
+
+
+function createClock(user) {
+    modele.User.findOne({where: {email: user.email}}).then(user => {
+            modele.Clock.create({
+                id_user: user.id,
+                status : false
+            })
+        }
+    )
 }
 
 function getUserByRole(res, params) {
@@ -116,5 +133,15 @@ function getUserByRole(res, params) {
         );
     } else {
         res.send("Mauvais paramètres !", 400);
+    }
+}
+
+function getUserByEmail(res, params) {
+    if (params.email !== undefined) {
+        modele.User.findAll({where: {email: params.email}}).then(resp => {
+            res.send(resp);
+        }).catch(e => {
+            res.send(400, e.message)
+        })
     }
 }

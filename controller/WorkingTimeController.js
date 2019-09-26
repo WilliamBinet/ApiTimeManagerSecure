@@ -1,4 +1,4 @@
-var modele = require('../models/index');
+const modele = require('../models/index');
 const Sequelize = require('sequelize');
 const op = Sequelize.Op;
 
@@ -8,7 +8,7 @@ module.exports = {
         if (req.query !== undefined && Object.keys(req.query).length === 2) {
             if (req.query.start !== undefined && req.query.end !== undefined) {
                 modele.WorkingTime.findAll({
-                    where: {id_user: req.params.id, start: {[op.gte]: req.query.start}, end: {[op.lte]: req.query.end}}
+                    where: {id_user: req.params.id_user, start: {[op.gte]: req.query.start}, end: {[op.lte]: req.query.end}}
                 }).then(
                     (result) => {
                         result !== null ? res.json(result) : res.sendStatus(404)
@@ -20,6 +20,14 @@ module.exports = {
         } else {
             res.send("Mauvais paramètres !", 400);
         }
+    },
+
+    getWorkingTimeById: function (req, res) {
+        modele.WorkingTime.findAll({where : {id : req.params.id}}).then(resp => {
+            res.send(resp);
+        }).catch(e => {
+            res.send(400, e);
+        })
     },
 
     getWorkingTimeByIdUserId: function (req, res) {

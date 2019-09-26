@@ -1,4 +1,5 @@
 'use strict';
+// noinspection JSUndefinedPropertyAssignment
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Roles', {

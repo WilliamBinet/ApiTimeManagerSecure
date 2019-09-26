@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var modele = require('../models/index');
+const express = require('express');
+const router = express.Router();
+const modele = require('../models/index');
 const bcrypt = require('bcrypt-nodejs');
-var validator = require('validator');
+const validator = require('validator');
 module.exports = {
     validateInsert: function (params) {
         console.log(params.email);

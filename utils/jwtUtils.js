@@ -24,7 +24,7 @@ module.exports = {
         console.log('Mon token' + token);
         if (token !== null) {
             try {
-                var verifToken = jwt.verify(token, KEY);
+                const verifToken = jwt.verify(token, KEY);
                 if (verifToken !== null) {
                     userId = verifToken.userId;
                 }

@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 let userController = require('../controller/UserController');
 
 
@@ -18,9 +18,6 @@ router.get('/:id', userController.getUserById);
 router.put('/:id', userController.updateUser);
 
 router.post('/sign_up', userController.createUser);
-
-
-
 
 router.delete('/:id', userController.deleteUser);
 
