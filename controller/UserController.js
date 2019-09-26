@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
     getUsers: function (req, res) {
+        console.log(">>>>>>>>>>>>>>>>< Header ", req.headers);
         if (Object.keys(req.query).length !== 0) {
             if (req.query.email !== undefined) {
                 getUserByEmail(res, req.query);

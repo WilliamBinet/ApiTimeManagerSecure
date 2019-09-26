@@ -3,12 +3,13 @@ const router = express.Router();
 const modele = require('../models/index');
 const bcrypt = require('bcrypt-nodejs');
 const clockController = require('../controller/ClockController');
+const authorization = require('../utils/AuthorizationUtils');
 
 
-router.get('/:id_user', clockController.getClockById);
+router.get('/:id_user',authorization.EmployeeRight ,clockController.getClockById);
 
-router.post('/:id_user', clockController.updateClockStatus);
-router.put('/:id_user', clockController.updateClock);
+router.post('/:id_user',authorization.EmployeeRight, clockController.updateClockStatus);
+router.put('/:id_user', authorization.AdministratorRight,clockController.updateClock);
 
 
 
