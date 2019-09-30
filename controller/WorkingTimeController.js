@@ -18,7 +18,9 @@ module.exports = {
                 res.send("Mauvais paramètres !", 400);
             }
         } else {
-            res.send("Mauvais paramètres !", 400);
+            modele.WorkingTime.findAll({where : {id_user:  req.params.id_user}}).then(result => {
+                result !== null ? res.json(result) : res.statusCode(404);
+            })
         }
     },
 
