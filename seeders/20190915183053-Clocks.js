@@ -5,6 +5,20 @@ module.exports = {
     up: (queryInterface, Sequelize) => {
         return queryInterface.bulkInsert('Clocks', [
             {
+                id_user: '1',
+                time: new Date(),
+                status: false,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                id_user: '2',
+                time: new Date(),
+                status: false,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
                 id_user: '3',
                 time: new Date(),
                 status: false,
