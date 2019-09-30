@@ -14,7 +14,7 @@ module.exports = {
             .then(clock => {
                 if (clock !== null) {
                     if (clock.status) {
-                        insertWorkingTime(clock.time, clock.id_user, req.body.update.time);
+                        insertWorkingTime(new Date(clock.time).setHours(new Date(clock.time).getHours() - 2), clock.id_user, req.body.update.time);
                     }
                     req.body.update.status = !clock.status;
                     return clock.update(req.body.update);
